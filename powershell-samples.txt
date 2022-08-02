@@ -1,0 +1,12 @@
+Rename-Computer -NewName "neuerName" -DomainCredential Domain\Admin -Restart
+
+Add-Computer -DomainName Domain -Server Domain\DC1 -PassThru -Verbose
+
+Get-NetAdapter
+
+New-NetIPAddress -InterfaceIndex 4 -IPAddress 192.168.100.101 -PrefixLength 24 -DefaultGateway 192.168.100.1
+
+
+Set-DnsClientServerAddress -InterfaceIndex 4 -ServerAddresses 192.168.100.100,8.8.8.8
+
+Get-NetIPConfiguration
